@@ -14,27 +14,27 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.chat.chat.entities.Chat;
-import com.chat.chat.repositories.ChatRepository;
+import com.chat.chat.entities.User;
+import com.chat.chat.repositories.UserRepository;
 
 @RestController
 @RequestMapping("/api")
 public class ChatController {
 
 	@Autowired
-	ChatRepository chatRepositoriy;
+	UserRepository userRepository;
 	
-	@PostMapping("/create")
-	public ResponseEntity<Chat> createChatAccount(@Valid @RequestBody Chat newChatAccount, BindingResult bindingResult){
+	@PostMapping("/register")
+	public ResponseEntity<User> createChatAccount(@Valid @RequestBody User newChatAccount, BindingResult bindingResult){
 			if(newChatAccount == null || bindingResult.hasErrors()) {
-				return new ResponseEntity<Chat>(HttpStatus.NO_CONTENT);
+				return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
 			}
-			chatRepositoriy.save(newChatAccount);
-		return new ResponseEntity<Chat>(newChatAccount, HttpStatus.CREATED);
+			userRepository.save(newChatAccount);
+		return new ResponseEntity<User>(newChatAccount, HttpStatus.CREATED);
 	};
 	
-	@GetMapping("/all")
-	public List<Chat> getChatAccount(){
-		return chatRepositoriy.findAll();
+	@GetMapping("/users")
+	public List<User> getChatAccount(){
+		return userRepository.findAll();
 	};
 }

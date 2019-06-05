@@ -2,8 +2,8 @@ package com.chat.chat.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.chat.chat.entities.Chat;
+import com.chat.chat.entities.User;
 
-public interface ChatRepository extends JpaRepository<Chat, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
 }

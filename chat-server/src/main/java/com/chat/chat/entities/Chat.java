@@ -1,16 +1,14 @@
 package com.chat.chat.entities;
 
-import java.util.Set;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.persistence.ManyToMany;
+
 
 @Entity
 public class Chat {
@@ -19,14 +17,8 @@ public class Chat {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotBlank(message = "name field msut be filled out")
-	private String name;
+	private String message;
 	
-	@Min(5)
-	private Integer phone;
-	
-	@OneToMany(mappedBy ="chatMessage")
-	private Set<Messages> message;
 
 	//end fields
 	
@@ -38,27 +30,13 @@ public class Chat {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Integer getPhone() {
-		return phone;
-	}
-
-	public void setPhone(Integer phone) {
-		this.phone = phone;
-	}
-
-	public Set<Messages> getMessage() {
+	public String getMessage() {
 		return message;
 	}
 
-	public void setMessage(Set<Messages> message) {
+	public void setMessage(String message) {
 		this.message = message;
 	}
+
+
 }
